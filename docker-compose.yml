@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    environment:
+      - CONSUMER_KEY=${CONSUMER_KEY}
+      - CONSUMER_SECRET=${CONSUMER_SECRET}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REDIS_HOST=${REDIS_HOST} # redis
+      - REDIS_PORT=${REDIS_PORT} # 6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    build:
+      context: .
+      dockerfile: ./application/Dockerfile
+    ports:
+      - '127.0.0.1:5000:5000'
+    links:
+      - redis
+    depends_on:
+      - redis
+  redis:
+    image: redis
+    ports:
+      - '127.0.0.1:6379:6379'

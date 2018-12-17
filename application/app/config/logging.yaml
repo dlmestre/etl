@@ -1,0 +1,32 @@
+---
+version: 1
+disable_existing_loggers: False
+formatters:
+    simple:
+        format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: simple
+        stream: ext://sys.stdout
+
+    graypy:
+        class: graypy.GELFHandler
+        level: DEBUG
+        formatter: simple
+        host: localhost
+        port: 12201
+        extra_fields:
+            service: TwitterService
+            env: dev
+loggers:
+    my_module:
+        level: DEBUG
+        handlers: [console, graypy]
+        propagate: no
+
+root:
+    level: DEBUG
+    handlers: [console, graypy]

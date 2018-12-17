@@ -1,0 +1,6 @@
+python-consul==1.1.0
+flask==1.0.2
+tweepy==3.6.0
+textblob==0.15.1
+langdetect==1.0.7
+redis==3.0.1
